@@ -1,4 +1,7 @@
+import { setMetal } from "./transient.js";
+
 export const getMetals = async () => {
+  document.addEventListener("change", metalChange);
   const response = await fetch("http://localhost:8088/metals");
   const metals = await response.json();
 
@@ -13,12 +16,12 @@ export const getMetals = async () => {
 
   html += metalArray.join("");
 
-  //   for (const metal of metals) {
-  //     html += `<div>
-  //             <input type="radio" name="metal" value="${metal.id}" />
-  //             ${metal.metal}
-  //             </div>`;
-  //   }
-
   return html;
+};
+
+const metalChange = (changeEvent) => {
+  if (changeEvent.target.name === "metal") {
+    const converted = parseInt(changeEvent.target.value);
+    setMetal(converted);
+  }
 };

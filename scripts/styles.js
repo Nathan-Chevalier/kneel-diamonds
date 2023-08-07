@@ -1,4 +1,7 @@
+import { setStyle } from "./transient.js";
+
 export const getStyles = async () => {
+  document.addEventListener("change", styleChange);
   const response = await fetch("http://localhost:8088/styles");
   const styles = await response.json();
 
@@ -12,12 +15,12 @@ export const getStyles = async () => {
   });
 
   html += styleArray.join("");
-  //   for (const style of styles) {
-  //     html += `<div>
-  //         <input type="radio" name="style" value="${style.id}" />
-  //         ${style.style}
-  //         </div>`;
-  //   }
-
   return html;
+};
+
+const styleChange = (changeEvent) => {
+  if (changeEvent.target.name === "style") {
+    const converted = parseInt(changeEvent.target.value);
+    setStyle(converted);
+  }
 };
