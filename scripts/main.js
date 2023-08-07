@@ -1,7 +1,11 @@
 import { getMetals } from "./metals.js";
+import { getSizes } from "./sizes.js";
+import { getStyles } from "./styles.js";
 
 const render = async () => {
   const metalsHTML = await getMetals();
+  const sizesHTML = await getSizes();
+  const stylesHTML = await getStyles();
 
   const container = document.querySelector("#container");
 
@@ -16,10 +20,12 @@ const render = async () => {
 
             <section class="choices__sizes options">
                 <h2>Sizes</h2>
+                ${sizesHTML}
             </section>
 
             <section class="choices__styles options">
                 <h2>Styles</h2>
+                ${stylesHTML}
             </section>
         </article>
 
