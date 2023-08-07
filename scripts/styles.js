@@ -4,9 +4,20 @@ export const getStyles = async () => {
 
   let html = `<h2> Which style would you like?</h2>`;
 
-  for (const style of styles) {
-    html += `<input type="radio" name="style" value="${style.id}" /> ${style.style}`;
-  }
+  const styleArray = styles.map((style) => {
+    return `<div>
+                <input type="radio" name="style" value="${style.id}" />
+                ${style.style}
+                </div>`;
+  });
+
+  html += styleArray.join("");
+  //   for (const style of styles) {
+  //     html += `<div>
+  //         <input type="radio" name="style" value="${style.id}" />
+  //         ${style.style}
+  //         </div>`;
+  //   }
 
   return html;
 };
