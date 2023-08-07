@@ -1,11 +1,13 @@
 import { getMetals } from "./metals.js";
 import { getSizes } from "./sizes.js";
 import { getStyles } from "./styles.js";
+import { save } from "./save.js";
 
 const render = async () => {
   const metalsHTML = await getMetals();
   const sizesHTML = await getSizes();
   const stylesHTML = await getStyles();
+  const saveHTML = await save();
 
   const container = document.querySelector("#container");
 
@@ -30,7 +32,7 @@ const render = async () => {
         </article>
 
         <article class="order">
-
+            ${saveHTML}
         </article>
 
         <article class="customOrders">
@@ -41,5 +43,7 @@ const render = async () => {
 
   container.innerHTML = composedHTML;
 };
+
+document.addEventListener("orderSaved", render);
 
 render();
