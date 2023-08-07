@@ -1,4 +1,7 @@
+import { setSize } from "./transient.js";
+
 export const getSizes = async () => {
+  document.addEventListener("change", sizeChange);
   const response = await fetch("http://localhost:8088/sizes");
   const sizes = await response.json();
 
@@ -13,12 +16,12 @@ export const getSizes = async () => {
 
   html += divStringArray.join("");
 
-  //   for (const size of sizes) {
-  //     html += `<div>
-  //             <input type="radio" name="size" value="${size.id}" />
-  //             ${size.carets} carats
-  //             </div>`;
-  //   }
-
   return html;
+};
+
+const sizeChange = (changeEvent) => {
+  if (changeEvent.target.name === "size") {
+    const converted = parseInt(changeEvent.target.value);
+    setSize(converted);
+  }
 };
