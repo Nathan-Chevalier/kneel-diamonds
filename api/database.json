@@ -77,6 +77,13 @@
       "sizeId": 3,
       "metalId": 1,
       "timestamp": 0
+    },
+    {
+      "id": 2,
+      "styleId": 2,
+      "sizeId": 2,
+      "metalId": 1,
+      "timestamp": 0
     }
   ]
 }

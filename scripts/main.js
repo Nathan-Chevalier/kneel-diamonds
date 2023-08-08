@@ -2,12 +2,14 @@ import { getMetals } from "./metals.js";
 import { getSizes } from "./sizes.js";
 import { getStyles } from "./styles.js";
 import { save } from "./save.js";
+import { getOrders } from "./orders.js";
 
 const render = async () => {
   const metalsHTML = await getMetals();
   const sizesHTML = await getSizes();
   const stylesHTML = await getStyles();
   const saveHTML = await save();
+  const ordersHTML = await getOrders();
 
   const container = document.querySelector("#container");
 
@@ -37,7 +39,7 @@ const render = async () => {
 
         <article class="customOrders">
             <h2>Custom Jewelry Orders</h2>
-
+            ${ordersHTML}
         </article>
     `;
 
