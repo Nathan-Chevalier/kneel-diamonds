@@ -3,6 +3,7 @@ import { getSizes } from "./sizes.js";
 import { getStyles } from "./styles.js";
 import { save } from "./save.js";
 import { getOrders } from "./orders.js";
+import { getTypes } from "./type.js";
 
 const render = async () => {
   const metalsHTML = await getMetals();
@@ -10,6 +11,7 @@ const render = async () => {
   const stylesHTML = await getStyles();
   const saveHTML = await save();
   const ordersHTML = await getOrders();
+  const typeHTML = await getTypes();
 
   const container = document.querySelector("#container");
 
@@ -17,6 +19,9 @@ const render = async () => {
         <h1>Kneel Diamonds</h1>
 
         <article class="choices">
+            <section class="choices__types options">
+                ${typeHTML}
+            </section>
             <section class="choices__metals options">
                 <h2>Metals</h2>
                 ${metalsHTML}
