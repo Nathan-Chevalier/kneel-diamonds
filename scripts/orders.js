@@ -6,7 +6,8 @@ export const getOrders = async () => {
 
   let html = `<h2> Current Orders</h2>`;
   const ordersArray = orders.map((order) => {
-    const orderPrice = order.metal.price + order.style.price + order.size.price;
+    let orderPrice = order.metal.price + order.style.price + order.size.price;
+    orderPrice = orderPrice * order.type.multiplier;
     return `<div><section class="order"> Order #${order.id} costs $${orderPrice}</section></div>`;
   });
   html += ordersArray.join("");
