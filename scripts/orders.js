@@ -1,6 +1,6 @@
 export const getOrders = async () => {
   const response = await fetch(
-    "http://localhost:8088/orders?_expand=metal&_expand=style&_expand=size"
+    "http://localhost:8088/orders?_expand=metal&_expand=style&_expand=size&_expand=type"
   );
   const orders = await response.json();
 
