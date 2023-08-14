@@ -8,7 +8,11 @@ export const getOrders = async () => {
   const ordersArray = orders.map((order) => {
     let orderPrice = order.metal.price + order.style.price + order.size.price;
     orderPrice = orderPrice * order.type.multiplier;
-    return `<div><section class="order"> Order #${order.id} costs $${orderPrice}</section></div>`;
+    let convertedPrice = orderPrice.toLocaleString("en-US", {
+      style: "currency",
+      currency: "USD",
+    });
+    return `<div><section class="order"> Order #${order.id} costs ${convertedPrice}</section></div>`;
   });
   html += ordersArray.join("");
 

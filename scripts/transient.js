@@ -1,10 +1,8 @@
-const transientState = {
-  id: 0,
+let transientState = {
   styleId: 0,
   sizeId: 0,
   metalId: 0,
   typeId: 0,
-  timestamp: 0,
 };
 
 export const setStyle = (chosenStyle) => {
@@ -24,16 +22,32 @@ export const setType = (chosenType) => {
 };
 
 export const saveOrder = async () => {
-  const postOptions = {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(transientState),
-  };
+  if (
+    transientState.styleId === 0 ||
+    transientState.sizeId === 0 ||
+    transientState.metalId === 0 ||
+    transientState.typeId === 0
+  ) {
+    window.alert("Please fill out your order!");
+  } else {
+    const postOptions = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(transientState),
+    };
 
-  const response = await fetch("http://localhost:8088/orders", postOptions);
+    const response = await fetch("http://localhost:8088/orders", postOptions);
 
-  const saveEvent = new CustomEvent("orderSaved");
-  document.dispatchEvent(saveEvent);
+    const saveEvent = new CustomEvent("orderSaved");
+    document.dispatchEvent(saveEvent);
+
+    transientState = {
+      styleId: 0,
+      sizeId: 0,
+      metalId: 0,
+      typeId: 0,
+    };
+  }
 };
