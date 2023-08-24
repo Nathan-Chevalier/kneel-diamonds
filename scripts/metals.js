@@ -1,4 +1,4 @@
-import { setMetal } from "./transient.js";
+import { setMetal, getTransient } from "./transient.js";
 
 export const getMetals = async () => {
   document.addEventListener("change", metalChange);
@@ -8,10 +8,13 @@ export const getMetals = async () => {
   let html = `<h2> Which type of metal would you like?</h2>`;
 
   const metalArray = metals.map((metal) => {
+    const transient = getTransient();
     return `<div>
-                <input type="radio" name="metal" value="${metal.id}" />
-                ${metal.metal}
-                </div>`;
+                <input type="radio" name="metal" value="${metal.id}" ${
+      transient.metalId === metal.id ? "checked" : ""
+    }/>
+            ${metal.metal}
+            </div>`;
   });
 
   html += metalArray.join("");

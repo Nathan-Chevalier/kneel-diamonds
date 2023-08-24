@@ -5,7 +5,7 @@ import { save } from "./save.js";
 import { getOrders } from "./orders.js";
 import { getTypes } from "./type.js";
 
-const render = async () => {
+export const render = async () => {
   const metalsHTML = await getMetals();
   const sizesHTML = await getSizes();
   const stylesHTML = await getStyles();
