@@ -1,4 +1,4 @@
-import { setSize } from "./transient.js";
+import { getTransient, setSize } from "./transient.js";
 
 export const getSizes = async () => {
   document.addEventListener("change", sizeChange);
@@ -8,8 +8,11 @@ export const getSizes = async () => {
   let html = `<h2> Which size would you like? </h2>`;
 
   const divStringArray = sizes.map((size) => {
+    const transient = getTransient();
     return `<div>
-        <input type="radio" name="size" value="${size.id}" />
+        <input type="radio" name="size" value="${size.id}" ${
+      transient.sizeId === size.id ? "checked" : ""
+    }/>
         ${size.carets} carats
         </div>`;
   });

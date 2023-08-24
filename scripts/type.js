@@ -1,4 +1,4 @@
-import { setType } from "./transient.js";
+import { getTransient, setType } from "./transient.js";
 
 export const getTypes = async () => {
   document.addEventListener("change", typeChange);
@@ -8,7 +8,10 @@ export const getTypes = async () => {
   let html = `<h2> What type of jewelry would you like made? </h2>`;
 
   const typeArray = types.map((type) => {
-    return `<input type="radio" name="type" value="${type.id}" />
+    const transient = getTransient();
+    return `<input type="radio" name="type" value="${type.id}" ${
+      transient.typeId === type.id ? "checked" : ""
+    }/>
                 ${type.type}`;
   });
 

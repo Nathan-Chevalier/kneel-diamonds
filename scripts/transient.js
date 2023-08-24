@@ -1,3 +1,5 @@
+import { render } from "./main.js";
+
 let transientState = {
   styleId: 0,
   sizeId: 0,
@@ -5,20 +7,28 @@ let transientState = {
   typeId: 0,
 };
 
+export const getTransient = () => {
+  return transientState;
+};
+
 export const setStyle = (chosenStyle) => {
   transientState.styleId = chosenStyle;
+  render();
 };
 
 export const setSize = (chosenSize) => {
   transientState.sizeId = chosenSize;
+  render();
 };
 
 export const setMetal = (chosenMetal) => {
   transientState.metalId = chosenMetal;
+  render();
 };
 
 export const setType = (chosenType) => {
   transientState.typeId = chosenType;
+  render();
 };
 
 export const saveOrder = async () => {

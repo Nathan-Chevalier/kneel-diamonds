@@ -1,4 +1,4 @@
-import { setStyle } from "./transient.js";
+import { getTransient, setStyle } from "./transient.js";
 
 export const getStyles = async () => {
   document.addEventListener("change", styleChange);
@@ -8,8 +8,11 @@ export const getStyles = async () => {
   let html = `<h2> Which style would you like?</h2>`;
 
   const styleArray = styles.map((style) => {
+    const transient = getTransient();
     return `<div>
-                <input type="radio" name="style" value="${style.id}" />
+                <input type="radio" name="style" value="${style.id}" ${
+      transient.styleId === style.id ? "checked" : ""
+    }/>
                 ${style.style}
                 </div>`;
   });
